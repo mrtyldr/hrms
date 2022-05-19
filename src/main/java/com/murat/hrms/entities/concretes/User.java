@@ -1,6 +1,7 @@
 package com.murat.hrms.entities.concretes;
 
 
+import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -22,9 +23,12 @@ public class User {
     private int id;
 
     @Column(name = "passwrd")
+    @NotNull
     private String password;
 
-    @Column(name = "e_mail")
+
+    @Column(name = "e_mail",unique = true)
+    @NotNull
     private String email;
 
 
