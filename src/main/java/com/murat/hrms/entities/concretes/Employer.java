@@ -9,6 +9,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.List;
 
 @Data
@@ -24,14 +25,17 @@ public class Employer extends User {
 
     @Column(name = "company_name",unique = true)
     @NotNull
+    @NotBlank
     private String companyName;
 
     @Column(name = "company_domain",unique = true)
     @NotNull
+    @NotBlank
     private String companyDomain;
 
     @Column(name = "phone_number",unique = true)
     @NotNull
+    @NotBlank
     private String phoneNumber;
 
     @OneToMany(mappedBy = "employer",fetch = FetchType.LAZY)

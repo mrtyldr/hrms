@@ -8,6 +8,8 @@ import lombok.NoArgsConstructor;
 
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 
 @Entity
 @Table(name = "users")
@@ -24,11 +26,13 @@ public class User {
 
     @Column(name = "passwrd")
     @NotNull
+    @NotBlank
     private String password;
 
 
     @Column(name = "e_mail",unique = true)
     @NotNull
+    @Email
     private String email;
 
 

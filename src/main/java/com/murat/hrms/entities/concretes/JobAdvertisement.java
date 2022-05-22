@@ -1,15 +1,15 @@
 package com.murat.hrms.entities.concretes;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import com.sun.istack.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.boot.context.properties.bind.DefaultValue;
 
+import java.util.List;
 import javax.persistence.*;
-import java.sql.Date;
-import java.sql.Timestamp;
+import java.time.LocalDate;
+import java.util.Date;
 
 @Entity
 @Data
@@ -23,9 +23,9 @@ public class JobAdvertisement {
     @Column(name = "ad_id")
     private int advertisementId;
 
-    @Column(name = "job_name")
+    /*@Column(name = "job_name")
     @NotNull
-    private String jobName;
+    private String jobName;*/
 
     @Column(name = "job_definition")
     @NotNull
@@ -44,14 +44,20 @@ public class JobAdvertisement {
 
     @Column(name = "apply_deadline")
     @NotNull
-    private Date applyDeadline;
+    @Temporal(TemporalType.DATE)
+    private Date applyDeadLine;
 
     @Column(name = "publish_date")
-    private Timestamp publishingDate = new Timestamp(System.currentTimeMillis());
+    @NotNull
+    @Temporal(TemporalType.DATE)
+    private Date publishingDate;
 
 
     @ManyToOne(optional = false)
     @JoinColumn(name = "comp_id",referencedColumnName = "employer_id")
     private Employer employer;
+
+    @OneToMany(mappedBy ="jobAdvertisement",fetch = FetchType.LAZY)
+    private List<Job> job;
 
 }

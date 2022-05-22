@@ -4,6 +4,7 @@ package com.murat.hrms.api.controllers;
 import com.murat.hrms.business.abstracts.JobAdvertisementService;
 import com.murat.hrms.core.utilities.results.DataResult;
 import com.murat.hrms.entities.concretes.JobAdvertisement;
+import com.murat.hrms.entities.dtos.JobAdvertisementWithCompNameDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -41,5 +42,10 @@ public class JobAdvertisementController{
     @GetMapping("/findallsortedbydate")
     public DataResult<List<JobAdvertisement>> findAllSortedByDate(){
         return this.jobAdvertisementService.findAllSortedByDate();
+    }
+
+    @GetMapping("/findwithcompname")
+    public DataResult<List<JobAdvertisementWithCompNameDto>> findWithCompName(){
+        return this.jobAdvertisementService.findWithCompName();
     }
 }
